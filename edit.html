@@ -1,0 +1,791 @@
+<div ng-controller="editController">
+    <div class="row">
+      <div class="col-lg-1"> </div>
+      <div class="col-lg-7 ">
+        <div id="main">
+          <!-- mobile view --------------------->
+          <div class="mobile-content">
+            <div class="mobile-head">
+              <i class="fa fa-angle-left" id="left-icon"></i>
+              <p class="heading"><b>AFTER SCHOOL</b></p>
+            </div>
+            <div class="mobile-head">
+              <a href="" class="opt">DETAILS</a>
+              <a href="" class="opt">LEVELS/RANKS</a>
+              <a href="" class="opt" id="mem-opt"> MEMBERSHIP OPTIONS</a>
+            </div>
+          </div>
+          <!-- Details -------------------------->
+          <div class="container-fluid" id="details-form">
+            <a href="" id="details-label" ng-click="label('details')">
+              <div class="membership-edit detail-edit" id="detail-mem" ng-style="{ 'borderRadius' : (details == true) ? '10px 10px 0px 0px' : '10px' }">
+                <div class="edit-label">
+                  &nbsp;&nbsp;<b>STEP 1 &nbsp;&nbsp;DETAILS</b>
+                  <span class="dropdown-icon" id="drop-detail"
+                    ng-style="{ 'rotate' : (details == true) ? '180deg' : '0deg' }">
+                    <img src="images/dropdown-icon.png" alt="Dropdown Icon">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <div ng-show="details">
+              <div class="edit-form">
+                <div class="row">
+                  <div class="col-12 ">
+                    <form class="form1" method="POST" name="myForm"><br>
+                      <div class="col-6">
+                        <label for="title" class="membership-title"><b>Membership Title</b></label>
+                        <div>
+                          <input type="text" class="form-control" placeholder="Give it a short distinct name"
+                            required=""  name="details_title" ng-model="details_title"  value="">
+                        </div>
+                      </div>
+                      <br>
+                      <div class="col-6">
+                        <label for="title" class="membership-subtitle"><b>Membership Subtitle</b></label>
+                        <div>
+                          <input type="text" class="form-control" placeholder="Give it a short distinct name"
+                            required="" name="details_subtitle" ng-model="details_subtitle"  >
+                        </div>
+                      </div>
+                      <br>
+                      <div class="col-6">
+                        <label class="membership-option"><b>Membership Option URL</b>
+                          <span class="span-question">
+                            <img src="images/question.png" alt="question icon">
+                          </span>
+                        </label>
+                        <div>
+                          <a href="https://cp-dev.mystudio.io/m/?=9wXMAM/6826/28787//1673793164"
+                            id="url"><b>https://cp-dev.mystudio.io/m/?=9wXMAM/6826/28787//1673793164</b></a>
+                          <a href="" class="action-icon url-action">
+                            <img src="images/duplicate.png" alt="Duplicate Icon">
+                          </a>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-12">
+                    <label class="mem-description"><b>Membership Description</b></label>
+                    <div class="col-3">
+                      <div class="style-font">
+                        <button type="button" title="bold" class="btn btn-light mob-size" >
+                          <i class="fa fa-bold"></i>
+                        </button>
+                        <button type="button" title="italic" class="btn btn-light mob-size">
+                          <i class="fa fa-italic"></i>
+                        </button>
+                      </div>
+                      <div class="size-font">
+                        <div class="formatter-size" id="font">
+                          <button type="button" data-toggle="dropdown" ng-model="sizeSelect">
+                            <div class="mobi">{{sizeSelect}}</div>
+                            <i class="fa fa-caret-down class_caret"></i>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li ng-repeat="opt in sizeOptions" ng-click="GetSelectedValue($index,'size')">
+                              <a class="dropdown-item" href="" >
+                                <span><i class="fa fa-check showtick" ng-show="tick" ng-if="sizeSelect==opt.option ? tick=true:tick=false"></i></span>
+                                <span class="drop-words">{{opt.option}}</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="list-style">
+                        <button type="button" title="ol" class="btn btn-light formatter-ol mob-size">
+                          <i class="fa fa-list-ol"></i>
+                        </button>
+                        <button type="button" title="ul" class="btn btn-light formatter-ul mob-size">
+                          <i class="fa fa-list-ul"></i>
+                        </button>
+                      </div>
+                      <div class="link-style">
+                        <button type="button" title="link" class="btn btn-light mob-size"><i class="fa fa-link"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <textarea  class="textarea" contenteditable="true" name="description" ng-model="description">
+                  </textarea>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- payment-------------------------------- -->
+          <div class="container-fluid" id="payment-form">
+            <a href="" id="payment-label" ng-click="label('payment')">
+              <div class="membership-edit" id="payment-mem" ng-style="{ 'borderRadius' : (payment == true) ? '10px 10px 0px 0px' : '10px' }">
+                <div class="edit-label">
+                  &nbsp;&nbsp;<b>STEP 2 &nbsp;&nbsp;PAYMENT</b>
+                  <span class="dropdown-icon" id="drop-payment" ng-style="{ 'rotate' : (payment == true) ? '180deg' : '0deg' }">
+                    <img src="images/dropdown-icon.png" alt="Dropdown Icon">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <div ng-show="payment">
+              <div class="edit-form" id="edit-payment-form">
+                <div class="payment-fields">
+                  <form class="form2" role="form" method="POST">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="col-6">
+                          <div class="label structure-label">
+                            <label for="structure-button"><b>Structure</b>
+                              <span class="span-question"> <img src="images/question.png" alt="question icon">
+                              </span>
+                            </label>
+                            <div class="dropdown">
+                              <button type="button" data-toggle="dropdown"  name="pay_structure" ng-model="pay_structure" >
+                                <!-- <input type="hidden" name="pay_structure" ng-model="form.pay_structure"> -->
+                                <div class="select-word">{{pay_structure}}</div>
+                                <i class="fa fa-caret-down class_caret"></i>
+                              </button>
+                              <ul class="dropdown-menu" >
+                                <li ng-repeat="opt in openOptions" ng-click="GetSelectedValue($index,'OE')" value="{{opt.option}}"> 
+                                  <a class="dropdown-item" href="">
+                                    <span><i class="fa fa-check showtick" ng-show="tick" ng-if="pay_structure==opt.option ? tick=true:tick=false"></i></span>
+                                    <span class="drop-words">{{opt.option}}</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-6" ng-show="billingLabel">
+                          <div class="label billing-label" id="billing">
+                            <label for="structure-button">Billing Options</label>
+                            <div class="dropdown">
+                              <button type="button" data-toggle="dropdown" name="pay_billing_plan" ng-model="pay_billing_plan">
+                                <div class="select-word">{{pay_billing_plan}}</div>
+                                <i class="fa fa-caret-down class_caret"></i>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li ng-repeat="opt in billingOptions" ng-click="GetSelectedValue($index,'BO')" value="{{opt.option}}" >
+                                  <a class="dropdown-item" href="">
+                                    <span><i class="fa fa-check showtick" ng-show="tick" ng-if="pay_billing_plan==opt.option ? tick=true:tick=false"></i></span>
+                                    <span class="drop-words">{{opt.option}}</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="col-6">
+                          <div class="label signup-label">
+                            <label for="signup-text">Sign-up Fee
+                              <span class="span-question">
+                                <img src="images/question.png" alt="question icon">
+                              </span>
+                            </label>
+                            <br>
+                            <div class="input-group">
+                              <span class="input-group-text bg-white" id="basic-addon1 signup-text">$</span>
+                              <input type="text" class="form-control form-border" placeholder="30.00" name="pay_signup_fee" ng-model="pay_signup_fee" numbers-only>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="label chargesignup-label">
+                            <label for="chargesignup-button">Charge Sign-up Fee </label>
+                            <div class="dropdown">
+                              <button type="button" data-toggle="dropdown"  name="charge_signup_fee" ng-model="charge_signup_fee">
+                                <div class="select-word">{{charge_signup_fee}}</div>
+                                <i class="fa fa-caret-down class_caret"></i>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li ng-repeat="opt in signupOptions" ng-click="GetSelectedValue($index,'SU')" value="{{opt.option}}" >
+                                  <a class="dropdown-item" href="">
+                                    <span><i class="fa fa-check showtick" ng-show="tick" ng-if="charge_signup_fee==opt.option ? tick=true:tick=false"></i></span>
+                                    <span class="drop-words">{{opt.option}}</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="col-6">
+                          <div class="label membershipfee-label">
+                            <label for="membershipfee-text">Membership Fee
+                              <span class="span-question">
+                                <img src="images/question.png" alt="question icon"> </span>
+                            </label>
+                            <div class="input-group" id="membershipfee-text">
+                              <span class="input-group-text bg-white" id="basic-addon1"> $ </span>
+                              <input type="text" class="form-control form-border" placeholder="30.00" name="pay_membership_fee" ng-model="pay_membership_fee" numbers-only>
+                            </div><br>
+                            <div>
+                              <p class="membershipfee-info" id="member-info">Customer total:$30.66 Net Gross:$30.00
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="label recurringpaymentfrequency-label">
+                            <label for="recurring-text">
+                              <strong>Recurring Payment Frequency</strong>
+                            </label>
+                            <div class="dropdown">
+                              <button type="button" data-toggle="dropdown"  name="recurring_frequency" ng-model="recurring_frequency" ng-style="{ 'width' : (recurringInput == true) ? '174px':'344px'}">
+                                <div class="select-word">{{recurring_frequency}}</div>
+                                <i class="fa fa-caret-down class_caret"></i>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li ng-repeat="opt in recurringOptions" ng-click="GetSelectedValue($index,'RF')" value="{{opt.option}}" >
+                                  <a class="dropdown-item" href="">
+                                    <span><i class="fa fa-check showtick" ng-show="tick" ng-if="recurring_frequency==opt.option ? tick=true:tick=false"></i></span>
+                                    <span class="drop-words">{{opt.option}}</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <input type="text" class="form-control recurring-input" placeholder="12" ng-show="recurringInput" name="recurring" ng-model="recurring">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="col-6">
+                          <div class="label chargefirstpayment-label">
+                            <label for="charge-first-payment-text">
+                              <strong>Charge First Payment</strong>
+                            </label>
+                            <div class="dropdown">
+                              <button type="button" data-toggle="dropdown" name="charge_first_payment" ng-model="charge_first_payment">
+                                <div class="select-word">{{charge_first_payment}}</div>
+                                <i class="fa fa-caret-down class_caret"></i>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li ng-repeat="opt in firstPaymentOptions" ng-click="GetSelectedValue($index,'FP')" value="{{opt.option}}" >
+                                  <a class="dropdown-item" href="">
+                                    <span><i class="fa fa-check showtick" ng-show="tick" ng-if="charge_first_payment==opt.option ? tick=true:tick=false"></i></span>
+                                    <span class="drop-words">{{opt.option}}</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="label delaypayment-label">
+                            <label>Delay Payment Start Date
+                              <span class="span-question">
+                                <img src="images/question.png" alt="question icon">
+                              </span>
+                            </label>
+                            <label class="switch toggle">
+                              <input type="checkbox" class="form-control"  ng-true-value="'YES'" ng-false-value="'NO'" name="delay_pay" ng-model="delay_pay">
+                              <span class="slider round span">YES &nbsp;NO</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="col-6" ng-show="prorate">
+                          <div class="label proratefirstpayment-label" id="prorate">
+                            <label>Pro-rate First Payment Period
+                              <span class="span-question">
+                                <img src="images/question.png" alt="question icon">
+                              </span>
+                            </label>
+                            <label class="switch toggle2">
+                              <input type="checkbox" class="form-control " ng-true-value="'YES'" ng-false-value="'NO'" name="prorate_pay_period"  ng-model="prorate_pay_period"  >
+                              <span class="slider round span" >YES &nbsp;NO</span>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="label useattendancelimit-label">
+                            <label>Use Attendance Limit?
+                              <span class="span-question">
+                                <img src="images/question.png" alt="question icon">
+                              </span>
+                            </label>
+                            <label class="switch toggle3">
+                              <input type="checkbox" class="form-control" ng-true-value="'YES'" ng-false-value="'NO'" name="use_attendance_limit" ng-model="use_attendance_limit">
+                              <span class="slider round span">YES &nbsp;NO</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="col-6">
+                          <div class="label expiration-label">
+                            <label>Membership Expiration Date </label>
+                            <div class="exp-days" ng-show="expirationDays">
+                              <input type="text" class=" form-control exp-input" placeholder="1" name="expiration_count" ng-model="expiration_count">
+                              <div class="dropdown">
+                                <button type="button" data-toggle="dropdown"  name="exp_monthy" ng-model="exp_monthy" id="exp-select">
+                                  <div class="select-word">{{exp_monthy}}</div>
+                                  <i class="fa fa-caret-down" id="exp_class_caret"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li ng-repeat="opt in expMonthyOptions" ng-click="GetSelectedValue($index,'ED')" value="{{opt.option}}" >
+                                    <a class="dropdown-item" href="">
+                                      <span><i class="fa fa-check showtick" ng-show="tick" ng-if="exp_monthy==opt.option ? tick=true:tick=false"></i></span>
+                                      <span class="drop-words">{{opt.option}}</span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div>
+                              <p class="membershipfee-info" id="mem-info">Membership will continue to bill until cancelled. </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- Edit- Automation -------------------------------------->
+          <div class="container-fluid" id="automation-form">
+            <a href="" id="automation-label" ng-click="label('automation')">
+              <div class="membership-edit" id="automation-mem" ng-style="{ 'borderRadius' : (automation == true) ? '10px 10px 0px 0px' : '10px' }">
+                <div class="edit-label">
+                  &nbsp;&nbsp;<b>STEP 3&nbsp;&nbsp;&nbsp;AUTOMATION </b>
+                  <span class="dropdown-icon" id="drop-automation" ng-style="{ 'rotate' : (automation == true) ? '180deg' : '0deg' }">
+                    <img src="images/dropdown-icon.png" alt="Dropdown Icon">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <div ng-show="automation">
+              <div class="edit-form1">
+                <form class="form3" method="POST">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="label autorenew-label">
+                          <label>At Expiration Date,<br> Auto-renew Membership?
+                            <span class="span-question">
+                              <img src="images/question.png" alt="question icon">
+                            </span>
+                          </label>
+                          <label class="switch toggle4">
+                              <input type="checkbox" class="form-control" ng-true-value="'YES'" ng-false-value="'NO'" name="auto_renew_mem" ng-model="auto_renew_mem">
+                              <span class="slider round span">YES &nbsp;NO</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="col-6 automation-select">
+                          <div class="dropdown">
+                            <button type="button" data-toggle="dropdown" name="automation_timing" ng-model="automation_timing">
+                              <div class="select-word">{{automation_timing}}</div>
+                              <i class="fa fa-caret-down class_caret"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li ng-repeat="opt in activityOptions" ng-click="GetSelectedValue($index,'AO')" value="{{opt.option}}">
+                                <a class="dropdown-item" href="">
+                                  <span><i class="fa fa-check showtick" ng-show="tick" ng-if="automation_timing==opt.option ? tick=true:tick=false"></i></span>
+                                  <span class="drop-words">{{opt.option}}</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="col-6 automation-select1">
+                          <div class="dropdown">
+                            <button type="button" data-toggle="dropdown" name="automation_charge_signupfee" ng-model="automation_charge_signupfee">
+                              <div class="select-word">{{automation_charge_signupfee}}</div>
+                              <i class="fa fa-caret-down class_caret"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li ng-repeat="opt in SignupFeeOptions" ng-click="GetSelectedValue($index,'SF')" value="{{opt.option}}">
+                                <a class="dropdown-item" href="">
+                                  <span><i class="fa fa-check showtick" ng-show="tick" ng-if="automation_charge_signupfee==opt.option ? tick=true:tick=false" ></i></span>
+                                  <span class="drop-words">{{opt.option}}</span>
+                                </a>
+                              </li>
+
+                            </ul>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="label upgrade-label">
+                          <label>Expiration and Upgrade Automations
+                            <span class="question">
+                              <img src="images/question.png" alt="question icon">
+                            </span>
+                          </label>
+                          <div class="add-automation">
+                            <img src="images/plus.png" alt="Add Icon" id="plus">
+                            <label class="add_member">&nbsp;&nbsp;Add Automation</label>
+                          </div>
+                          <div class="automation-input">
+                            <input type="text" class="form-control"
+                              placeholder="Expiration and Upgrade: New Expir.." name="add_automation_input" ng-model="add_automation_input" required="">
+                            <span>
+                              <a href="" class="action-icon" id="delete-icon">
+                                <img src="images/delete.png" alt="Delete Icon">
+                              </a>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- Edit Discount coupen ------------------>
+          <div class="container-fluid discount-form" ng-show="discountform">
+            <a href="" id="discount-label" ng-click="label('discount')">
+              <div class="membership-edit" id="discount-mem" ng-style="{ 'borderRadius' : (discount == true) ? '10px 10px 0px 0px' : '10px' }">
+                <div class="edit-label">
+                  &nbsp;&nbsp;<b>STEP 4 &nbsp;&nbsp; DISCOUNT CODES</b>
+                  <span class="dropdown-icon" id="drop-discount" ng-style="{ 'rotate' : (discount == true) ? '180deg' : '0deg' }">
+                    <img src="images/dropdown-icon.png" alt="Dropdown Icon">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <div ng-show="discount">
+              <div class="edit-form1 edit-discount-form">
+                <form class="form4"  method="POST">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="col-6">
+                          <label for="title" class="discount-label"><b>Discount Code</b></label>
+                          <input type="text" class="form-control " id="discount-input"
+                            placeholder="Specify discount code name" value="" name="discount_code_name" ng-model="discount_code_name" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="col-6 discount-select">
+                          <div class="dropdown">
+                            <button type="button" data-toggle="dropdown" name="selecting_fee_type" ng-model="selecting_fee_type">
+                              <div class="select-discount">{{selecting_fee_type}}</div>
+                              <i class="fa fa-caret-down class_caret"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li ng-repeat="opt in discountSelectOptions" ng-click="GetSelectedValue($index,'DS')" value="{{opt.option}}">
+                                <a class="dropdown-item" href="">
+                                  <span><i class="fa fa-check showtick" ng-show="tick" ng-if="selecting_fee_type==opt.option ? tick=true:tick=false"></i></span>
+                                  <span class="drop-words">{{opt.option}}</span>
+                                </a>
+                              </li>
+
+                            </ul>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="col-6">
+                          <div class="discount-amount">
+                            <button type="button" class="custom-discount fordollar discount_type_class"  ng-click="discount_type='$' " ng-class="{'discount_type_class' : (discount_type == '$')}">$</button>
+                            <button type="button" class="custom-discount forpercent"  ng-click="discount_type='%'" ng-class="{'discount_type_class' : (discount_type == '%' )}">%</button>
+                          </div>
+                          <div class="input-group dis-am">
+                            <span class="input-group-text bg-white" ng-bind="discount_type">$</span>
+                            <input type="text" class="form-control form-border" id="dis-amount" placeholder="15" name="discount_amount_percent" ng-model="discount_amount_percent">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="col-6">
+                          <button type="button" class="button-add btn btn-success" id="button-add" ng-disabled="!discount_code_name" >ADD</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- Edit condition ---------------------------->
+          <div class="container-fluid condition-form" ng-show="conditionform">
+            <a href="" id="condition-label" ng-click="label('condition')">
+              <div class="membership-edit" id="condition-mem" ng-style="{ 'borderRadius' : (condition == true) ? '10px 10px 0px 0px' : '10px' }">
+                <div class="edit-label">
+                  &nbsp;&nbsp;<b>STEP 5 &nbsp;&nbsp;CONDITIONS AND ACTIONS</b>
+                  <span class="dropdown-icon" id="drop-condition" ng-style="{ 'rotate' : (condition == true) ? '180deg' : '0deg' }">
+                    <img src="images/dropdown-icon.png" alt="Dropdown Icon">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <div ng-show="condition">
+              <div class="edit-form1">
+                <form class="form5" method="POST">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="add-eventcondition">
+                          <img src="images/plus.png" alt="Add Icon" id="plus">
+                          <label class="add_member">&nbsp;&nbsp;New event condition</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="condition-event">
+                          <label for="event" class="event"><b>Event &nbsp;&nbsp; 1</b></label>
+                          <span class="eventcondition">
+                            <p>If a member has attended &nbsp;&nbsp;&nbsp;&nbsp;
+                              <span>
+                                <input type="text" class="days" title="times" />
+                              </span>&nbsp;&nbsp; times within the last &nbsp;&nbsp;&nbsp;&nbsp;
+                              <span>
+                                <input type="text" class="days" title="times" />
+                              </span>&nbsp;&nbsp; days
+                              <span id="dropdown">
+                                <i class="fa fa-caret-up"></i>
+                              </span>
+                            </p>
+                            <div class="line"></div>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <span>
+                      <a href="" class="action-icon del">
+                        <img src="images/delete.png" alt="Delete Icon">
+                      </a>
+                    </span>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="add-action">
+                          <img src="images/plus.png" alt="Add Icon" id="plus">
+                          <label class="new-action">
+                            <a href="" class="myBtn" data-toggle="modal" data-target="#myModal"
+                              id="myBtn">&nbsp;&nbsp;New action</a>
+                          </label>
+
+                          <div class="modal" id="myModal">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                              <div class="pop-label" id="pop-label1">
+                                <label><b>Add new action</b></label>
+                              </div>
+                              <div class="center-line" id="line1"></div>
+                              <div class="pop-label" id="pop-label2">
+                                <a href="#" data-toggle="modal" data-target="#myemailModal" data-dismiss="modal"
+                                  class="send-action" id="myemailBtn">Email</a>
+                              </div>
+                              <div class="center-line" id="line2"></div>
+                              <div class="pop-label" id="pop-label3">
+                                <a href="#" class="send-action">Mobile message</a>
+                              </div>
+                              <div class="center-line" id="line3"></div>
+                              <div class="pop-label" id="pop-label4">
+                                <a href="#" class="send-action">Task</a>
+                              </div>
+                              <div class="center-line" id="line4"></div>
+                              <div class="pop-label" id="pop-label5">
+                                <button type="button" class="close">
+                                  <a href="" data-dismiss="modal" id="cancel-btn">Cancel</a>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Email modal -->
+                          <div id="myemailModal" class="modal emailModal">
+                            <div class="emailmodal-content">
+                              <div class="border email-heading">
+                                <span class="add-email"> <b>Add an email</b></span>
+                                <div>
+                                  <a href="" id="close-email" data-dismiss="modal">
+                                    <img src="images/cancel.png" alt="cancel Icon">
+                                  </a>
+                                </div>
+                              </div>
+                              <form method="POST">
+                                <div class="template">
+                                  <div class="container-fluid">
+                                    <div class="row">
+                                      <div class="col-3">
+                                        <div class="email-label"> Send this email </div>
+                                      </div>
+                                      <div class="col-3">
+                                        <div class="dropdown ">
+                                          <button type="button" class="sam-template" data-toggle="dropdown">
+                                            <div>Sample email template2</div>
+                                            <i class="fa fa-caret-down class_caret email-caret1"></i>
+                                          </button>
+                                        </div>
+                                      </div>
+                                      <div class="view">
+                                        <a href="">View &nbsp;/&nbsp;edit</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="template">
+                                  <div class="container-fluid">
+                                    <div class="row">
+                                      <div class="col-3">
+
+                                        <div class="dropdown">
+                                          <button type="button" class="auto-template" data-toggle="dropdown">
+                                            <div>at the specified</div>
+                                            <i class="fa fa-caret-down class_caret email-caret2"></i>
+                                          </button>
+                                        </div>
+
+
+                                      </div>
+                                      <div class="col-3">
+                                        <div class="email-label" id="email-label"> automation start time </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                              <div class="add-emailcondition">
+                                <img src="images/plus.png" alt="Add Icon" id="plus-email">
+                                <label class="email-condition">&nbsp;&nbsp;Add Condition</label>
+                              </div><br>
+                              <div>
+                                <p class="note">(These conditions must also be met in order to send this email)</p>
+                              </div>
+                              <div class="custom-switch ">
+                                <span class="or-condition">OR</span>
+                                <span class="toggle-condition">
+                                  <label class="switch toggle2">
+                                    <input type="checkbox" class="form-control">
+                                    <span class="slider round span"></span>
+                                  </label>
+                                </span>
+                                <span class="and-condition">AND</span>
+                              </div>
+                              <div class="choose mob-choose">
+                                <div class="choosecondition ">
+                                  <div class="container-fluid">
+                                    <div class="row">
+                                      <div class="col-4">
+                                        <div class="circle">
+                                          <span class="number">3</span>
+                                        </div>
+                                        <select title="select" class=" form-select con-on form-control">
+                                          <option>Choose condition</option>
+                                        </select>
+                                        <a href="" class="action-icon copy">
+                                          <img src="images/save.png" alt="Duplicate Icon">
+                                        </a>
+                                        <a href="" class="action-icon copy can">
+                                          <img src="images/cancel.png" alt="cancel Icon">
+                                        </a>
+                                        <a href="" class="action-icon delete" id="mob-delete">
+                                          <img src="images/delete.png" alt="Delete Icon">
+                                        </a>
+                                      </div>
+                                      <div class="con-in">
+                                        <input type="text" class="form-control" placeholder="User action is">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="conditionselect">
+                                <div class="container-fluid">
+                                  <div class="row">
+                                    <div class="col-4">
+                                      <div class="circle">
+                                        <span class="number">1</span>
+                                      </div>
+                                      <select title="select" class="form-select con-on form-control ">
+                                        <option>Day 1: [SMS Text] This is the...</option>
+                                      </select>
+                                    </div>
+                                    <div class="col-4">
+                                      <select title="select" class=" form-select con-on form-control ">
+                                        <option>Read</option>
+                                      </select>
+                                    </div>
+                                    <a href="" class="action-icon delete">
+                                      <img src="images/delete.png" alt="Delete Icon">
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="center-line seperator" id="seperator1"></div>
+                              <span class="or-condition sep-or">OR</span>
+                              <div class="center-line seperator" id="seperator2"></div>
+                              <div class="conditionselect gap">
+                                <div class="container-fluid">
+                                  <div class="row">
+                                    <div class="col-4">
+                                      <div class="circle">
+                                        <span class="number">2</span>
+                                      </div>
+                                      <select title="select" class=" form-select con-on form-control minimal">
+                                        <option>Day 1: [In-app Text] This is the...</option>
+                                      </select>
+                                    </div>
+                                    <div class="col-4">
+                                      <select title="select" class=" form-select con-on form-control minimal">
+                                        <option>Read</option>
+                                      </select>
+                                    </div>
+                                    <a href="" class="action-icon delete">
+                                      <img src="images/delete.png" alt="Delete Icon">
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="right">
+                                <button type="submit" title="Save" class="btn-action">Save</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- Submit -->
+          <div class="act-button" ng-show="actButton">
+            <button type="button" title="cancel" class="btn-action" id="cancel" >Cancel</button>
+            <button type="submit" title="Save" class="btn-action btn btn-success" id="save"  ng-click="insertData()" ng-disabled="!details_title && !details_subtitle">Save</button>
+          </div>
+          <div class="desk">
+            <button type="button" title="cancel" class="btn-action" id="cancel">Cancel</button>
+            <button type="submit" title="Save" class="btn-action btn btn-success" id="save"  ng-click="insertData()" ng-disabled="!details_title && !details_subtitle">Save</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4"> </div>
+    </div>
+  </div>
